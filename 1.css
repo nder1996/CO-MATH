@@ -1,0 +1,18 @@
+.nav-item a{
+	position: relative;
+	color: white !important;
+	font-size: 25px;
+	left: -10px;
+}
+
+.nav-item li {
+	position: relative;
+	left: 20px;
+}
+
+.form-floating{
+	position: relative;
+	width: 50%;
+	left: 20%;
+	top: 100px;
+}
