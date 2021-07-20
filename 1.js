@@ -19,8 +19,29 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-var starCountRef = firebase.database().ref('posts/' + postId + '/starCount');
-starCountRef.on('value', (snapshot) => {
-  const data = snapshot.val();
-  updateStarCount(postElement, data);
-});
+
+let database = firebase.database();
+
+let ref = database.ref("Formulario_Registro");
+
+let Estudiante = {
+    Apellido:"meneses",
+    Contraseña:"123456789",
+    Email:"nder@gmail.com",
+    Grado:"Octavo",
+    Username: "Juan_Pablo",
+    Nombre : "juan",
+}
+
+ref.push(Estudiante);
+
+
+//
+//Acceder a servicio bbdd
+/*const data = firebase.database(); //Obtener una referencia a la raíz de la base de datos
+
+
+let refToData = data.ref();//Obtener una console.log de todos los datos 
+dataRef.once('Username', snapshot => {
+  console.log(snapshot.val());
+});*/
