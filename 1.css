@@ -16,3 +16,12 @@
 	left: 20%;
 	top: 100px;
 }
+
+
+#Estudiantes{
+	position: relative;
+	text-align: center;
+	width: 100%;
+	background-color: silver !important;
+	top: 100px;
+}

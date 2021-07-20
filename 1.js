@@ -19,8 +19,11 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-firebase.database().ref('Formulario_Registro/' + "Juan_Pablo").set({
 
+//Escritura
+
+firebase.database().ref('Formulario_Registro/' + "Juan_Pablo").set({
+        
         Apellido: "meneses",
         Contraseña: "123456789",
         Email: "nder@gmail.com",
@@ -31,34 +34,22 @@ firebase.database().ref('Formulario_Registro/' + "Juan_Pablo").set({
 });
 
 
+//Lectura
 
+const Formulario_Registro = firebase.database().ref();
 
-/*
-let database = firebase.database();
+const Username = Formulario_Registro.child('Formulario_Registro');
 
-let ref = database.ref("Formulario_Registro");
+Username.on("child_added",  snap =>{
 
+    let User = snap.val();
 
-let Estudiante = {
+    Estudiantes  = User.Username;
 
-        Apellido: "meneses",
-        Contraseña: "123456789",
-        Email: "nder@gmail.com",
-        Grado: "Octavo",
-        Username: "Juan_Pablo",
-        Nombre: "juan",
+    Estu = document.getElementById("Estudiantes");
 
-}
+    Estu.inner+=`Estu`;
 
-ref.push(Estudiante);
-*/
+    console.log("USER_NAME : " , Estu);
 
-//
-//Acceder a servicio bbdd
-/*const data = firebase.database(); //Obtener una referencia a la raíz de la base de datos
-
-
-let refToData = data.ref();//Obtener una console.log de todos los datos 
-dataRef.once('Username', snapshot => {
-  console.log(snapshot.val());
-});*/
+})
