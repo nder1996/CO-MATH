@@ -1,3 +1,18 @@
+
+.barra-nav{
+	position: relative;
+	height: 70px;
+}
+
+#Agregar{
+	position: relative;
+	top: 150px;
+	border-radius: 10px;
+	width: 170px;
+	height: 45px;
+	left: 1%;
+}
+
 .nav-item a{
 	position: relative;
 	color: white !important;
@@ -5,23 +20,30 @@
 	left: -10px;
 }
 
-.nav-item li {
-	position: relative;
-	left: 20px;
-}
-
-.form-floating{
-	position: relative;
-	width: 50%;
-	left: 20%;
-	top: 100px;
-}
 
 
 #Estudiantes{
 	position: relative;
 	text-align: center;
 	width: 100%;
-	background-color: silver !important;
+	background-color: white !important;
 	top: 100px;
+	margin-bottom: 10%;
+}
+
+.table{
+	position: relative;
+	margin-top: 10%;
+}
+
+.N_Column{
+	position: relative;
+	text-align: center;
+	left: 1.4%;
+}
+
+.D_Fila{
+	position: relative;
+	text-align: center;
+	left: 1.4%;
 }

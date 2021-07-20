@@ -1,7 +1,4 @@
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-
+let Contador = 0;
 
 var firebaseConfig = {
     apiKey: "AIzaSyBU0Tbmu5B_sO2k-N2CX6gD16F8KFFPt7g",
@@ -23,13 +20,13 @@ firebase.analytics();
 //Escritura
 
 firebase.database().ref('Formulario_Registro/' + "Juan_Pablo").set({
-        
-        Apellido: "meneses",
-        Contraseña: "123456789",
-        Email: "nder@gmail.com",
-        Grado: "Octavo",
-        Username: "Juan_Pablo",
-        Nombre: "juan",
+
+    Apellido: "meneses",
+    Contraseña: "123456789",
+    Email: "nder@gmail.com",
+    Grado: "Octavo",
+    Username: "Juan_Pablo",
+    Nombre: "juan",
 
 });
 
@@ -38,18 +35,28 @@ firebase.database().ref('Formulario_Registro/' + "Juan_Pablo").set({
 
 const Formulario_Registro = firebase.database().ref();
 
-const Username = Formulario_Registro.child('Formulario_Registro');
+const Estudiante = Formulario_Registro.child('Formulario_Registro');
 
-Username.on("child_added",  snap =>{
+Estudiante.on("child_added", snap => {
 
     let User = snap.val();
+    Contador += 1;
+    //Estudiantes_Array.push(User.Username);
 
-    Estudiantes  = User.Username;
+    Estu = document.getElementById("Datos_Estudiantes");
 
-    Estu = document.getElementById("Estudiantes");
-
-    Estu.inner+=`Estu`;
-
-    console.log("USER_NAME : " , Estu);
-
+    Estu.innerHTML += `
+                <tr>
+                <th scope="row">${Contador}</th>
+                <td>Andersons</td>
+                <td>Arevalo Madrid</td>
+                <td>ander@ander.com</td>
+                <td>ander@ander.com</td>
+                <td>ander@ander.com</td>
+                <th scope="col">
+                    <button type="button" class="btn btn-primary">Editar</button>
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </th>
+            </tr>
+    `
 })
