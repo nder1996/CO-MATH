@@ -19,22 +19,39 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+firebase.database().ref('Formulario_Registro/' + "Juan_Pablo").set({
 
+        Apellido: "meneses",
+        Contraseña: "123456789",
+        Email: "nder@gmail.com",
+        Grado: "Octavo",
+        Username: "Juan_Pablo",
+        Nombre: "juan",
+
+});
+
+
+
+
+/*
 let database = firebase.database();
 
 let ref = database.ref("Formulario_Registro");
 
+
 let Estudiante = {
-    Apellido:"meneses",
-    Contraseña:"123456789",
-    Email:"nder@gmail.com",
-    Grado:"Octavo",
-    Username: "Juan_Pablo",
-    Nombre : "juan",
+
+        Apellido: "meneses",
+        Contraseña: "123456789",
+        Email: "nder@gmail.com",
+        Grado: "Octavo",
+        Username: "Juan_Pablo",
+        Nombre: "juan",
+
 }
 
 ref.push(Estudiante);
-
+*/
 
 //
 //Acceder a servicio bbdd
