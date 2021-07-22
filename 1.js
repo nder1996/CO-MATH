@@ -20,7 +20,6 @@ firebase.analytics();
 //Escritura
 
 firebase.database().ref('Formulario_Registro/' + "Juan_Pablo").set({
-
     Apellido: "meneses",
     Contraseña: "123456789",
     Email: "nder@gmail.com",
@@ -32,6 +31,39 @@ firebase.database().ref('Formulario_Registro/' + "Juan_Pablo").set({
 
 
 //Lectura
+
+
+function Eliminar_Inncesario(Dato){
+
+    Info_1 = Dato.replace('"', '');
+
+    Dato = Info_1.replace('"', '');
+
+    return Dato;
+}
+
+
+//Validaciones
+
+
+
+
+
+
+//Agregar Estudiante
+
+function Agregar_Estudiante() {
+
+    Nombre = $("#Nombre").val();
+    Apellido = $("#Apellido").val();
+    Grado = $("#Grado").val();
+    Email = $("#Email").val();
+    Username = $("#Username").val();
+    Contraseña = $("#Contraseña").val();
+
+    console.log(Nombre,Apellido,Grado,Email,Username,Contraseña)
+}
+
 
 const Formulario_Registro = firebase.database().ref();
 
@@ -48,15 +80,21 @@ Estudiante.on("child_added", snap => {
     Estu.innerHTML += `
                 <tr>
                 <th scope="row">${Contador}</th>
-                <td>Andersons</td>
-                <td>Arevalo Madrid</td>
-                <td>ander@ander.com</td>
-                <td>ander@ander.com</td>
-                <td>ander@ander.com</td>
+                <td>${Eliminar_Inncesario(User.Username)}</td>
+                <td>${Eliminar_Inncesario(User.Nombre)}</td>
+                <td>${Eliminar_Inncesario(User.Apellido)}</td>
+                <td>${Eliminar_Inncesario(User.Email)}</td>
+                <td>${Eliminar_Inncesario(User.Grado)}</td>
                 <th scope="col">
-                    <button type="button" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
+                    <button type="button" class="btn btn-primary" id="Edit_${Contador}">Editar</button>
+                    <button type="button" class="btn btn-danger" id="Elim_${Contador}>Eliminar</button>
                 </th>
             </tr>
     `
 })
+
+
+/*----------BOOTSTRAP--------------*/
+
+
+/*----------BOOTSTRAP--------------*/

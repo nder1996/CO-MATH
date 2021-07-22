@@ -4,14 +4,6 @@
 	height: 70px;
 }
 
-#Agregar{
-	position: relative;
-	top: 150px;
-	border-radius: 10px;
-	width: 170px;
-	height: 45px;
-	left: 1%;
-}
 
 .nav-item a{
 	position: relative;
@@ -20,7 +12,27 @@
 	left: -10px;
 }
 
+.button-Estudiante{
+	position: relative;
+	top: 130px;
+	left: 1%;
+}
 
+.modal-header h5{
+	position: relative;
+	left:10%;
+}
+
+.form-datos {
+	position: relative;
+	display: flex;
+	width: 100%;
+}
+
+.form-datos input{
+	position: relative;
+	margin-left: 10px;
+}
 
 #Estudiantes{
 	position: relative;
@@ -47,3 +59,4 @@
 	text-align: center;
 	left: 1.4%;
 }
+
