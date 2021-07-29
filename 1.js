@@ -51,28 +51,73 @@ function Validar_User(Dato_1, Dato_2) {
 
 
 
-function Agregar_Estudiante1(Username, Password, Nombre, Apellido, Email, Contraseña) {
-    firebase.database().ref('Formulario_Registro/' + Username).set({
-        Apellido: "meneses",
-        Contraseña: "123456789",
-        Email: "nder@gmail.com",
-        Grado: "Octavo",
-        Username: "Juan_Pablo",
-        Nombre: "juan",
+//function Agregar_Estudiante1(Username, Password, Nombre, Apellido, Email, Contraseña) {
 
-    });
+function Agregar_Estudiante() {
+
+    Nombre = $("#Nombre").val();
+    Apellido = $("#Apellido").val();
+    Grado = $("#Grado").val();
+    Email = $("#Email").val();
+    Username = $("#Username").val();
+    Contraseña = $("#Contraseña").val();
+
+    if (Nombre != undefined || Apellido != undefined || Grado != undefined || Email != undefined || Username != undefined || Password != undefined) {
+        firebase.database().ref('Formulario_Registro/' + Username).set({
+            Apellido: Apellido,
+            Contraseña: Contraseña,
+            Email: Email,
+            Grado: Grado,
+            Username: Username,
+            Nombre: Nombre,
+
+        });
+    }
 }
+
+
+/*
+
+function writeNewPost(uid, username, picture, title, body) {
+  // A post entry.
+  var postData = {
+    author: username,
+    uid: uid,
+    body: body,
+    title: title,
+    starCount: 0,
+    authorPic: picture
+  };
+
+  // Get a key for a new Post.
+  var newPostKey = firebase.database().ref().child('posts').push().key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  var updates = {};
+  updates['/posts/' + newPostKey] = postData;
+  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+
+  return firebase.database().ref().update(updates);
+}
+
+*/
+
+
+
+
 
 
 function Eliminar_Estudiante(Estudiante) {
-    // console.log("ELIMINAR : ",claves_user)
-    
 
+    let Dato = firebase.database().ref("Formulario_Registro/");
 
-  console.log("este es un dato : ",claves_user)
+    Dato.child(Estudiante).remove();
 
+    document.location.reload();
 
 }
+
+
 
 function Editar_Estudiante() {
     alert('editar mundo')
@@ -102,14 +147,13 @@ function Leer_Datos() {
                 <td>${Eliminar_Inncesario(User.Email)}</td>
                 <td>${Eliminar_Inncesario(User.Grado)}</td>
                 <th scope="col">
-                    <button type="button" class="btn btn-primary" id="Edit_${Contador}" onclick=Editar_Estudiante('${Username}')>Editar</button>
-                    <button type="button" class="btn btn-danger" id="Elim_${Contador}" onclick=Eliminar_Estudiante('${User.Username}')>Eliminar</button>
+                    <button type="button" class="btn btn-primary" id="Edit_${Contador}" onclick=Editar_Estudiante('${Eliminar_Inncesario(User.Username)}')>Editar</button>
+                    <button type="button" class="btn btn-danger" id="Elim_${Contador}" onclick=Eliminar_Estudiante('${Eliminar_Inncesario(User.Username)}')>Eliminar</button>
                 </th>
             </tr>
-`   
-        
+`
 
-        Validar_User(User.Username, Eliminar_Inncesario(User.Username))
+        Validar_User(Eliminar_Inncesario(User.Username), User.Username)
 
 
     });
