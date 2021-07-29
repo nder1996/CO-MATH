@@ -51,9 +51,9 @@ function Validar_User(Dato_1, Dato_2) {
 
 
 
-function Agregar_Estudiante1(Username,Password,Nombre,Apellido,Email,Contraseña){
-    firebase.database().ref('Formulario_Registro/' + Username ).set({
-      Apellido: "meneses",
+function Agregar_Estudiante1(Username, Password, Nombre, Apellido, Email, Contraseña) {
+    firebase.database().ref('Formulario_Registro/' + Username).set({
+        Apellido: "meneses",
         Contraseña: "123456789",
         Email: "nder@gmail.com",
         Grado: "Octavo",
@@ -64,12 +64,18 @@ function Agregar_Estudiante1(Username,Password,Nombre,Apellido,Email,Contraseña
 }
 
 
-function Eliminar_Estudiante(){
-    alert('ola mundo')
+function Eliminar_Estudiante(Estudiante) {
+    // console.log("ELIMINAR : ",claves_user)
+    
+
+
+  console.log("este es un dato : ",claves_user)
+
+
 }
 
-function Editar_Estudiante(){
-    alert('ola mundo')
+function Editar_Estudiante() {
+    alert('editar mundo')
 }
 
 
@@ -86,6 +92,7 @@ function Leer_Datos() {
         let User = snap.val();
         Contador += 1;
         Estu = document.getElementById("Datos_Estudiantes");
+        var Dato_Username = User.Username;
         Estu.innerHTML += `
                 <tr>
                 <th scope="row">${Contador}</th>
@@ -95,11 +102,12 @@ function Leer_Datos() {
                 <td>${Eliminar_Inncesario(User.Email)}</td>
                 <td>${Eliminar_Inncesario(User.Grado)}</td>
                 <th scope="col">
-                    <button type="button" class="btn btn-primary" id="Edit_${Contador}" onclick='Eliminar_Estudiante()'>Editar</button>
-                    <button type="button" class="btn btn-danger" id="Elim_${Contador}" onclick='Eliminar_Estudiante()'>Eliminar</button>
+                    <button type="button" class="btn btn-primary" id="Edit_${Contador}" onclick=Editar_Estudiante('${Username}')>Editar</button>
+                    <button type="button" class="btn btn-danger" id="Elim_${Contador}" onclick=Eliminar_Estudiante('${User.Username}')>Eliminar</button>
                 </th>
             </tr>
-`
+`   
+        
 
         Validar_User(User.Username, Eliminar_Inncesario(User.Username))
 
