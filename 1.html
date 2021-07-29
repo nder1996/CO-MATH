@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onload="Leer_Datos()">
     <nav class="barra-nav navbar navbar-expand-lg navbar-light bg-secondary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="Captura12.png" alt="" width="188" height="70"></a>
@@ -39,16 +39,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <br>
                     <form>
                         <div class="form-datos mb-3">
                             <input id="Nombre" type="text" class="form-control" id="recipient-name" placeholder="Nombre" required>
                             <input id="Apellido" type="text" class="form-control" id="recipient-name" placeholder="Apellido" required>
-                        </div>
-                        <div class="form-datos mb-3">
-                            <input id="Grado" type="text" class="form-control" id="recipient-name" placeholder="Grado Secundaria" required>
+                            <select class="form-select" aria-label="Default select example" id="Grado" required>
+                                <option selected>¿Cual es tu grado académico?</option>
+                                <option value="Sexto de bachillerato">Sexto de bachillerato</option>
+                                <option value="Septimo de bachillerato">Septimo de bachillerato</option>
+                                <option value="Octavo de bachillerato">Octavo de bachillerato</option>
+                            </select>
                             <input id="Email" type="text" class="form-control" id="recipient-name" placeholder="Email" required>
-                        </div>
-                        <div class="form-datos mb-3">
                             <input id="Username" type="text" class="form-control" id="recipient-name" placeholder="Username" required>
                             <input id="Contraseña" type="text" class="form-control" id="recipient-name" placeholder="Contraseña" required>
                         </div>

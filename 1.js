@@ -1,4 +1,6 @@
 let Contador = 0;
+var claves_user = []
+
 
 var firebaseConfig = {
     apiKey: "AIzaSyBU0Tbmu5B_sO2k-N2CX6gD16F8KFFPt7g",
@@ -17,67 +19,64 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 
-//Escritura
 
-firebase.database().ref('Formulario_Registro/' + "Juan_Pablo").set({
-    Apellido: "meneses",
-    Contraseña: "123456789",
-    Email: "nder@gmail.com",
-    Grado: "Octavo",
-    Username: "Juan_Pablo",
-    Nombre: "juan",
+function Eliminar_Inncesario(Dato) {
 
-});
+    if (Dato !== undefined) {
+        if (Dato !== null) {
+            for (i = 0; i < Dato.length; i++) {
+
+                if (Dato[i] == '"') {
+                    Dato = Dato.replace('"', '');
+                }
+                if (Dato[i] == " \ ") {
+                    Dato = Dato.replace(' \ ', '');
+                }
+
+            }
+        }
+    }
 
 
-//Lectura
 
-
-function Eliminar_Inncesario(Dato){
-
-    Info_1 = Dato.replace('"', '');
-
-    Dato = Info_1.replace('"', '');
 
     return Dato;
 }
 
+function Validar_User(Dato_1, Dato_2) {
 
-//Validaciones
-
-
-
-
-
-
-//Agregar Estudiante
-
-function Agregar_Estudiante() {
-
-    Nombre = $("#Nombre").val();
-    Apellido = $("#Apellido").val();
-    Grado = $("#Grado").val();
-    Email = $("#Email").val();
-    Username = $("#Username").val();
-    Contraseña = $("#Contraseña").val();
-
-    console.log(Nombre,Apellido,Grado,Email,Username,Contraseña)
+    //console.log("Dato_original : ",Dato_1," Dato Sin comillas : ",Dato_2)
+    claves_user.push(Dato_1, Dato_2)
 }
 
 
-const Formulario_Registro = firebase.database().ref();
 
-const Estudiante = Formulario_Registro.child('Formulario_Registro');
+function Agregar_Estudiante1(Username){
+    firebase.database().ref('Formulario_Registro/' + Username ).set({
+      Apellido: "meneses",
+        Contraseña: "123456789",
+        Email: "nder@gmail.com",
+        Grado: "Octavo",
+        Username: "Juan_Pablo",
+        Nombre: "juan",
 
-Estudiante.on("child_added", snap => {
+    });
+}
 
-    let User = snap.val();
-    Contador += 1;
-    //Estudiantes_Array.push(User.Username);
 
-    Estu = document.getElementById("Datos_Estudiantes");
 
-    Estu.innerHTML += `
+function Leer_Datos() {
+
+    let Info_1;
+    let Username_Info = [];
+    const Formulario_Registro = firebase.database().ref();
+    const Estudiante = Formulario_Registro.child('Formulario_Registro');
+
+    Estudiante.on("child_added", snap => {
+        let User = snap.val();
+        Contador += 1;
+        Estu = document.getElementById("Datos_Estudiantes");
+        Estu.innerHTML += `
                 <tr>
                 <th scope="row">${Contador}</th>
                 <td>${Eliminar_Inncesario(User.Username)}</td>
@@ -87,14 +86,15 @@ Estudiante.on("child_added", snap => {
                 <td>${Eliminar_Inncesario(User.Grado)}</td>
                 <th scope="col">
                     <button type="button" class="btn btn-primary" id="Edit_${Contador}">Editar</button>
-                    <button type="button" class="btn btn-danger" id="Elim_${Contador}>Eliminar</button>
+                    <button type="button" class="btn btn-danger" id="Elim_${Contador}">Eliminar</button>
                 </th>
             </tr>
-    `
-})
+`
+
+        Validar_User(User.Username, Eliminar_Inncesario(User.Username))
 
 
-/*----------BOOTSTRAP--------------*/
+    });
 
 
-/*----------BOOTSTRAP--------------*/
+}

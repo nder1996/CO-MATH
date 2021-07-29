@@ -20,18 +20,26 @@
 
 .modal-header h5{
 	position: relative;
-	left:10%;
+	left:11%;
 }
 
 .form-datos {
 	position: relative;
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 }
 
 .form-datos input{
 	position: relative;
-	margin-left: 10px;
+	margin-bottom: 30px;
+	padding-left: 10px;
+}
+
+
+.form-datos select{
+	position: relative;
+	margin-bottom: 30px;
 }
 
 #Estudiantes{
@@ -45,7 +53,7 @@
 
 .table{
 	position: relative;
-	margin-top: 10%;
+	margin-top: 10.1%;
 }
 
 .N_Column{
