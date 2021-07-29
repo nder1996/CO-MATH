@@ -51,7 +51,7 @@ function Validar_User(Dato_1, Dato_2) {
 
 
 
-function Agregar_Estudiante1(Username){
+function Agregar_Estudiante1(Username,Password,Nombre,Apellido,Email,Contraseña){
     firebase.database().ref('Formulario_Registro/' + Username ).set({
       Apellido: "meneses",
         Contraseña: "123456789",
@@ -62,6 +62,16 @@ function Agregar_Estudiante1(Username){
 
     });
 }
+
+
+function Eliminar_Estudiante(){
+    alert('ola mundo')
+}
+
+function Editar_Estudiante(){
+    alert('ola mundo')
+}
+
 
 
 
@@ -85,8 +95,8 @@ function Leer_Datos() {
                 <td>${Eliminar_Inncesario(User.Email)}</td>
                 <td>${Eliminar_Inncesario(User.Grado)}</td>
                 <th scope="col">
-                    <button type="button" class="btn btn-primary" id="Edit_${Contador}">Editar</button>
-                    <button type="button" class="btn btn-danger" id="Elim_${Contador}">Eliminar</button>
+                    <button type="button" class="btn btn-primary" id="Edit_${Contador}" onclick='Eliminar_Estudiante()'>Editar</button>
+                    <button type="button" class="btn btn-danger" id="Elim_${Contador}" onclick='Eliminar_Estudiante()'>Eliminar</button>
                 </th>
             </tr>
 `
