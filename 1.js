@@ -96,16 +96,22 @@ function Eliminar_Estudiante(Estudiante) {
 
 function Editar_Estudiante(Username) {
 
-    var Estudiante ;
+    var Estudiante;
 
     const Formulario = firebase.database().ref();
 
 
-    Formulario.child("Formulario_Registro/"+Username).on('value', snap => {
+    Formulario.child("Formulario_Registro/" + Username).on('value', snap => {
 
-         let User = snap.val();
+        let User = snap.val();
 
-         console.log("DATOS : ",User.Username)
+        $("#Nombre_Edit").val(User.Nombre);
+        $("#Apellido_Edit").val(User.Apellido);
+        $("#Grado_Edit").val(User.Grado);
+        $("#Email_Edit").val(User.Email);
+        $("#Username_Edit").val(User.Username);
+        $("#Contraseña_Edit").val(User.Contraseña);
+
 
     });
 
@@ -117,41 +123,35 @@ function Editar_Estudiante(Username) {
 
     //    console.log("DATOS : ",Datos)
 
+    /*
+
+
+     function getClient(key)
+      {
+        var client;
+        db.child("Client")
+          .on('value', function(snapshot){
+            client = snapshot.child(key).val()
+            console.log("1", client)
+          });
+        console.log("2", client)
+        return client;
+      }
+
+
+    */
+
+
+
+
+
+
+}
+
+
+
+
 /*
-
-
- function getClient(key)
-  {
-    var client;
-    db.child("Client")
-      .on('value', function(snapshot){
-        client = snapshot.child(key).val()
-        console.log("1", client)
-      });
-    console.log("2", client)
-    return client;
-  }
-
-
-*/
-
-                $("#Nombre_Edit").val('Juan');
-                $("#Apellido_Edit").val('Pedro castillo');
-                $("#Grado_Edit").val("noveno");
-                $("#Email_Edit").val("nder@gmail.com");
-                $("#Username_Edit").val("a5f45df");
-                $("#Contraseña_Edit").val("5a4d5sdf4asdf");
-
-
-
-
-
-            }
-
-
-
-
-            /*
 
 function writeNewPost(uid, username, picture, title, body) {
   // A post entry.
@@ -180,27 +180,27 @@ function writeNewPost(uid, username, picture, title, body) {
 
 
 
-            /*  <button type="button" class="btn btn-primary" id="Edit_${Contador}" onclick=Editar_Estudiante('${Eliminar_Inncesario(User.Username)}','${Contador}')>Editar</button> */
+/*  <button type="button" class="btn btn-primary" id="Edit_${Contador}" onclick=Editar_Estudiante('${Eliminar_Inncesario(User.Username)}','${Contador}')>Editar</button> */
 
-            function Leer_Datos() {
+function Leer_Datos() {
 
-                let Info_1;
-                let Username_Info = [];
-                const Formulario_Registro = firebase.database().ref();
-                const Estudiante = Formulario_Registro.child('Formulario_Registro');
+    let Info_1;
+    let Username_Info = [];
+    const Formulario_Registro = firebase.database().ref();
+    const Estudiante = Formulario_Registro.child('Formulario_Registro');
 
-                Estudiante.on("child_added", snap => {
-                    let User = snap.val();
-                    Contador += 1;
-                    Estu = document.getElementById("Datos_Estudiantes");
+    Estudiante.on("child_added", snap => {
+        let User = snap.val();
+        Contador += 1;
+        Estu = document.getElementById("Datos_Estudiantes");
 
-                    // claves_user.push(User.Username, User.Nombre, User.Apellido, User.Email, User.Grado, User.Contraseña);
+        // claves_user.push(User.Username, User.Nombre, User.Apellido, User.Email, User.Grado, User.Contraseña);
 
-                    // console.log("Contador : ",claves_user)
+        // console.log("Contador : ",claves_user)
 
-                    ///${Eliminar_Inncesario(User.Username)},${Eliminar_Inncesario(User.Contraseña)},${Eliminar_Inncesario(User.Nombre)},${Eliminar_Inncesario(User.Apellido)},${Eliminar_Inncesario(User.Email)},${Eliminar_Inncesario(User.Grado)}
+        ///${Eliminar_Inncesario(User.Username)},${Eliminar_Inncesario(User.Contraseña)},${Eliminar_Inncesario(User.Nombre)},${Eliminar_Inncesario(User.Apellido)},${Eliminar_Inncesario(User.Email)},${Eliminar_Inncesario(User.Grado)}
 
-                    Estu.innerHTML += `
+        Estu.innerHTML += `
                 <tr>
                 <th scope="row">${Contador}</th>
                 <td>${Eliminar_Inncesario(User.Username)}</td>
@@ -255,7 +255,7 @@ function writeNewPost(uid, username, picture, title, body) {
 
 
 
-                });
+    });
 
 
-            }
+}
