@@ -60,7 +60,11 @@ function Agregar_Estudiante() {
 
 
 
+
+
+
     if (Nombre !== undefined || Apellido !== undefined || Grado !== undefined || Email !== undefined || Username !== undefined || Contraseña !== undefined) {
+        ///Insertar_Datos(Nombre, Apellido,Grado,Email,Username,Contraseña)
         firebase.database().ref('Formulario_Registro/' + Username).set({
             Apellido: Apellido,
             Contraseña: Contraseña,
@@ -73,8 +77,17 @@ function Agregar_Estudiante() {
 }
 
 
-
-
+/*function Insertar_Datos(Nombre, Apellido,Grado,Email,Username,Contraseña){
+     firebase.database().ref('Formulario_Registro/' + Username).set({
+            Apellido: Apellido,
+            Contraseña: Contraseña,
+            Email: Email,
+            Grado: Grado,
+            Username: Username,
+            Nombre: Nombre,
+        });
+}
+*/
 
 
 
@@ -105,82 +118,54 @@ function Editar_Estudiante(Username) {
 
         let User = snap.val();
 
-        $("#Nombre_Edit").val(User.Nombre);
-        $("#Apellido_Edit").val(User.Apellido);
-        $("#Grado_Edit").val(User.Grado);
-        $("#Email_Edit").val(User.Email);
-        $("#Username_Edit").val(User.Username);
-        $("#Contraseña_Edit").val(User.Contraseña);
-
+        $("#Nombre_Edit").val(User.Nombre).val();
+        $("#Apellido_Edit").val(User.Apellido).val();
+        $("#Grado_Edit").val(User.Grado).val();
+        $("#Email_Edit").val(User.Email).val();
+        $("#Username_Edit").val(User.Username).val();
+        $("#Contraseña_Edit").val(User.Contraseña).val();
 
     });
 
 
 
-
-
-    // var Datos = firebase.database().ref('Formulario_Registro/');
-
-    //    console.log("DATOS : ",Datos)
-
-    /*
-
-
-     function getClient(key)
-      {
-        var client;
-        db.child("Client")
-          .on('value', function(snapshot){
-            client = snapshot.child(key).val()
-            console.log("1", client)
-          });
-        console.log("2", client)
-        return client;
-      }
-
-
-    */
+}
 
 
 
 
 
+function Actualizar_Datos(Key_Estudiante) {
+
+
+
+    Nombre = $("#Nombre_Edit").val();
+    Apellido = $("#Apellido_Edit").val();
+    Grado = $("#Grado_Edit").val();
+    Email = $("#Email_Edit").val();
+    Username_1 = $("#Username_Edit").val();
+    Contraseña = $("#Contraseña_Edit").val();
+
+    let Dato = firebase.database().ref("Formulario_Registro/");
+    Dato.child(Key_Estudiante).remove();
+
+    firebase.database().ref('Formulario_Registro/' + Username_1).set({
+        Apellido: Apellido,
+        Contraseña: Contraseña,
+        Email: Email,
+        Grado: Grado,
+        Username: Username_1,
+        Nombre: Nombre,
+    });
+
+     document.location.reload();
 
 }
 
 
 
 
-/*
 
-function writeNewPost(uid, username, picture, title, body) {
-  // A post entry.
-  var postData = {
-    author: username,
-    uid: uid,
-    body: body,
-    title: title,
-    starCount: 0,
-    authorPic: picture
-  };
-
-  // Get a key for a new Post.
-  var newPostKey = firebase.database().ref().child('posts').push().key;
-
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  var updates = {};
-  updates['/posts/' + newPostKey] = postData;
-  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-
-  return firebase.database().ref().update(updates);
-}
-
-*/
-
-
-
-
-/*  <button type="button" class="btn btn-primary" id="Edit_${Contador}" onclick=Editar_Estudiante('${Eliminar_Inncesario(User.Username)}','${Contador}')>Editar</button> */
 
 function Leer_Datos() {
 
@@ -239,7 +224,7 @@ function Leer_Datos() {
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="button" class="btn btn-primary">Actualizar Datos</button>
+                                                        <button type="button" class="btn btn-primary" onclick=Actualizar_Datos('${Eliminar_Inncesario(User.Username)}')>Actualizar Datos</button>
                                                     </div>
                                                 </div>
                                             </div>
