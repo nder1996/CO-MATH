@@ -14,8 +14,15 @@
 
 .button-Estudiante{
 	position: relative;
+	margin-bottom: 20px;
 	top: 130px;
 	left: 1%;
+}
+
+.table{
+	position: relative;
+	margin-top: 50px;
+
 }
 
 .modal-header h5{
@@ -53,19 +60,29 @@
 
 .table{
 	position: relative;
+	vertical-align:middle;
 	margin-top: 10.1%;
 }
 
 .N_Column{
 	position: relative;
 	text-align: center;
-	left: 1.4%;
 }
 
 .D_Fila{
 	position: relative;
 	text-align: center;
-	left: 1.4%;
+	
 }
+
+
+input:invalid{
+  border: 1px solid red;
+}
+
+input:valid{
+  border: 1px solid black;
+}
+
 
 

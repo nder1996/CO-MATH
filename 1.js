@@ -19,19 +19,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-function ValidarEmail() {
-
-  Email = $("#Email").val();
-
-  if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(Email)){
-   alert("La dirección de email " + /**/ + " es correcta!.");
-  } else {
-   alert("La dirección de email es incorrecta!.");
-  }
-}
-
-
-
 
 
 
@@ -52,9 +39,70 @@ function Eliminar_Inncesario(Dato) {
         }
     }
 
-    return Dato
+    return Dato;
 
 }
+
+
+function Agregar_Estudiante() {
+
+    Nombre = $("#Nombre").val();
+    Apellido = $("#Apellido").val();
+    Grado = $("#Grado").val();
+    Email = $("#Email").val();
+    Username = $("#Username").val();
+    Contraseña_1 = $("#Contraseña_1").val();
+    Contraseña_2 = $("#Contraseña_2").val();
+
+
+    Validar_Nombre = /^[a-zA-Z]+[a-zA-Z]+$/;
+    Validar_Apellido = /^[a-zA-ZÀ-ÿ\s]{3,15}$/;
+    Validar_Email = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    Validar_Password = /^[A-Za-z0-9]{8,30}$/;
+    Validar_Username = /^[a-z0-9_\\_\ü]+$/;
+
+
+
+    if (Validar_Nombre.test(Nombre) == true && Validar_Apellido.test(Apellido) == true && Validar_Email.test(Email) == true && Validar_Password.test(Contraseña_1) == true && Validar_Password.test(Contraseña_2) == true && Validar_Username.test(Username) == true) {
+
+        firebase.database().ref('Formulario_Registro/' + Username).set({
+
+            Apellido: Apellido,
+            Contraseña: Contraseña_1,
+            Email: Email,
+            Grado: Grado,
+            Username: Username,
+            Nombre: Nombre,
+
+        });
+
+        Swal.fire({
+            title: 'Estudiante Agregado Con Exito',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
+
+    } else {
+
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Ingresa Datos Correctos!',
+        })
+    }
+
+}
+
+function Eliminar_Estudiante(Username){
+
+        firebase.database().ref('Formulario_Registro/' + Username).remove();
+        window.location.reload();
+}
+
 
 
 function Leer_Datos() {
@@ -69,12 +117,6 @@ function Leer_Datos() {
         Contador += 1;
         Estu = document.getElementById("Datos_Estudiantes");
 
-        // claves_user.push(User.Username, User.Nombre, User.Apellido, User.Email, User.Grado, User.Contraseña);
-
-        // console.log("Contador : ",claves_user)
-
-        ///${Eliminar_Inncesario(User.Username)},${Eliminar_Inncesario(User.Contraseña)},${Eliminar_Inncesario(User.Nombre)},${Eliminar_Inncesario(User.Apellido)},${Eliminar_Inncesario(User.Email)},${Eliminar_Inncesario(User.Grado)}
-
         Estu.innerHTML += `
                 <tr>
                 <th scope="row">${Contador}</th>
@@ -84,8 +126,6 @@ function Leer_Datos() {
                 <td>${Eliminar_Inncesario(User.Email)}</td>
                 <td>${Eliminar_Inncesario(User.Grado)}</td>
                 <th scope="col" class="Datos_Estudiante" id="Estudiante_${Contador}">
-         
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Edit_Estudiante" data-bs-whatever="@mdo" id="Edit_${Contador}" onclick=Editar_Estudiante(Eliminar_Inncesario('${Eliminar_Inncesario(User.Username)}'))>Editar</button>
                             <div class="modal fade" id="Edit_Estudiante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -113,20 +153,16 @@ function Leer_Datos() {
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="button" class="btn btn-primary" onclick=Actualizar_Datos('${ValidarEmail()}')>Actualizar Datos</button>
+                                                        <button type="button" class="btn btn-primary" >Actualizar Datos</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Edit_Estudiante" data-bs-whatever="@mdo" id="Edit_${Contador}" onclick=Editar_Estudiante(Eliminar_Inncesario('${Eliminar_Inncesario(User.Username)}'))>Editar</button>
                     <button type="button" class="btn btn-danger" id="Elim_${Contador}" onclick=Eliminar_Estudiante('${Eliminar_Inncesario(User.Username)}')>Eliminar</button>
                 </th>
             </tr>
 `
-
-
-
-
-    
 
     });
 
