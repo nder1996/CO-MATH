@@ -128,35 +128,6 @@ function Editar_Estudiante(Username) {
         
         });
 
-        /*if(User.Username!=null && User.Username!=undefined){
-
-             console.log("ESTE ES USERNAME : ", User.Username );
-        }
-
-        
-        
-        /*$("#Apellido_Edit").val(User.Apellido).val();
-        $("#Grado_Edit").val(User.Grado).val();
-        $("#Email_Edit").val(User.Email).val();
-        $("#Username_Edit").val(User.Username).val();
-        $("#Contraseña_Edit").val(User.Contraseña).val();*/
-
-  
-
-
-    /*firebase.database().ref('Formulario_Registro/'+Username).once('value').then(function(snapshot){
-
-      /*  document.getElementById("Nombre_Edit").value = snapshot.val().Nombre;
-        document.getElementById("Apellido_Edit").value = snapshot.val().Apellido;
-        document.getElementById("Grado_Edit").value = snapshot.val().Grado;
-        document.getElementById("Email_Edit").value = snapshot.val().Email;*/
-        //document.getElementById("Username_Edit").value =  snapshot.val().Username;
-        /*document.getElementById("Contraseña_Edit_1").value = snapshot.val().Contraseña;
-        document.getElementById("Contraseña_Edit_2").value = snapshot.val().Contraseña;*//*
-    });*/
-
-
-
 }
 
 function Actualizar_Datos(Key_Estudiante) {
@@ -195,12 +166,6 @@ function Actualizar_Datos(Key_Estudiante) {
 
 
         window.location.reload();
-
-            
-            //Eliminar_Estudiante(Key_Estudiante);
-
-       // Eliminar_Estudiante(Key_Estudiante);
-        
 
 
 
